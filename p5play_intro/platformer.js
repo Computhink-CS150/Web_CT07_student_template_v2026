@@ -8,7 +8,7 @@ let gameWon = false;
 function setup() {
   new Canvas(900, 500);
   background(17, 23, 38);
-  world.gravity.y = 1500;
+  world.gravity.y = 1200;
 
   platforms = new Group();
   platforms.collider = 'static';
@@ -50,8 +50,8 @@ function setup() {
   player.color = '#4cc9f0';
   player.rotationLock = true;
   player.bounciness = 0;
-  player.maxSpeed = 500;
-  player.drag = 0.85;
+  player.maxSpeed = 280;
+  player.drag = 0.88;
 }
 
 function createPlatform(x, y, w, h) {
@@ -66,17 +66,17 @@ function draw() {
 
   if (!gameWon) {
     if (kb.pressing('left') || kb.pressing('a')) {
-      player.vel.x = -260;
+      player.vel.x = -180;
     }
     else if (kb.pressing('right') || kb.pressing('d')) {
-      player.vel.x = 260;
+      player.vel.x = 180;
     }
     else {
       player.vel.x *= 0.8;
     }
 
     if ((kb.presses('up') || kb.presses('w') || kb.presses('space')) && player.colliding(platforms)) {
-      player.vel.y = -680;
+      player.vel.y = -520;
     }
 
     player.collides(platforms);
