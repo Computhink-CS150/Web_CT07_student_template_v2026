@@ -1,23 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js"></script>
   <meta charset="UTF-8">
-  <title>My Game Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1720">
+  <title>Skybound Siege</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>🎮 Welcome to My Game Hub 🎮</h1>
-  <div class="game-links">
-    <a href="/p5play_intro/">Intro to p5play</a>
-    <a href="/p5play_intro/platformer.html">Play Platformer</a>
-    <a href="/flappybird/">Play Flappy Bird</a>
-    <a href="/fruitninja/">Play Fruit Ninja</a>
-    <a href="/geometrydash/">Play Geometry Dash</a>
-  </div>
+  <main class="game-shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">✦</span>
+        <div>
+          <p class="eyebrow">SLINGSHOT STUDIOS</p>
+          <h1>Skybound Siege</h1>
+        </div>
+      </div>
+      <div class="level-chip" id="levelLabel">LEVEL 01 <span>•</span> SUNSET OUTPOST</div>
+      <div class="score-block">
+        <span class="score-label">SCORE</span>
+        <strong id="score">000000</strong>
+      </div>
+    </header>
 
-  <script src = "placeholder.js"></script>
+    <section class="game-card" aria-label="Skybound Siege game">
+      <div class="canvas-wrap">
+        <canvas id="gameCanvas" aria-label="Slingshot game canvas"></canvas>
+        <div class="status-panel" id="statusPanel">
+          <p class="status-kicker">OUTPOST BREACH</p>
+          <h2 id="statusTitle">Take aim.</h2>
+          <p id="statusMessage">Drag the scout back, then release to launch.</p>
+          <button id="statusButton" type="button">Start siege</button>
+        </div>
+        <div class="toast" id="toast" role="status" aria-live="polite"></div>
+      </div>
+      <div class="controls">
+        <div class="birds" id="birdTray" aria-label="Birds remaining"></div>
+        <div class="hint"><span class="mouse-icon" aria-hidden="true">↖</span><span>DRAG TO AIM <b>•</b> RELEASE TO LAUNCH</span></div>
+        <button class="reset-button" id="resetButton" type="button">↻ <span>RESET</span></button>
+      </div>
+    </section>
 
+    <footer class="footer">
+      <span><b>TIP</b> Hit the glass supports first to bring the towers down.</span>
+      <span><kbd>R</kbd> reset level &nbsp; <kbd>M</kbd> mute sounds</span>
+    </footer>
+  </main>
+  <script src="Game1.js"></script>
 </body>
 </html>
