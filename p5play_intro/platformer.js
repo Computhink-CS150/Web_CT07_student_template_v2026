@@ -76,7 +76,7 @@ function draw() {
     }
 
     if ((kb.presses('up') || kb.presses('w') || kb.presses('space')) && player.colliding(platforms)) {
-      player.vel.y = -104;
+      player.vel.y = -52;
     }
 
     player.collides(platforms);
