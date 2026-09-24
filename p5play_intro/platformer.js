@@ -7,12 +7,12 @@ let gameWon = false;
 
 function setup() {
   new Canvas(900, 500);
-  background(17, 23, 38);
+  background('#87CEEB');
   world.gravity.y = 240;
 
   platforms = new Group();
   platforms.collider = 'static';
-  platforms.color = '#7bd389';
+  platforms.color = '#8b5a2b';
 
   createPlatform(450, 490, 1100, 40);
   createPlatform(220, 390, 220, 24);
@@ -37,17 +37,23 @@ function setup() {
   for (const [x, y] of coinPositions) {
     const coin = new Sprite(x, y, 18, 18);
     coin.collider = 'none';
-    coin.color = '#ffd166';
+    coin.color = '#f7d154';
+    coin.stroke = '#d9a300';
+    coin.strokeWeight = 2;
     coins.add(coin);
   }
 
   goal = new Sprite(1820, 110, 24, 80);
   goal.collider = 'static';
-  goal.color = '#8ecae6';
+  goal.color = '#f4d35e';
+  goal.stroke = '#6d4c41';
+  goal.strokeWeight = 2;
 
   player = new Sprite(80, 410, 30, 42);
   player.collider = 'dynamic';
-  player.color = '#4cc9f0';
+  player.color = '#e63946';
+  player.stroke = '#1d3557';
+  player.strokeWeight = 2;
   player.rotationLock = true;
   player.bounciness = 0;
   player.maxSpeed = 56;
@@ -57,12 +63,61 @@ function setup() {
 function createPlatform(x, y, w, h) {
   const platform = new Sprite(x, y, w, h);
   platform.collider = 'static';
-  platform.color = '#7bd389';
+  platform.color = '#c86b2b';
+  platform.stroke = '#7a3d22';
+  platform.strokeWeight = 2;
   platforms.add(platform);
 }
 
+function drawMarioBackground() {
+  push();
+  translate(-camera.x * 0.3, 0);
+
+  noStroke();
+
+  fill('#dff6ff');
+  drawCloud(150, 100, 70, 28);
+  drawCloud(460, 120, 80, 30);
+  drawCloud(830, 90, 72, 26);
+  drawCloud(1220, 130, 75, 30);
+  drawCloud(1560, 100, 70, 28);
+
+  fill('#7ecb6a');
+  beginShape();
+  vertex(0, 500);
+  vertex(80, 430);
+  vertex(180, 480);
+  vertex(300, 420);
+  vertex(430, 490);
+  vertex(560, 440);
+  vertex(700, 500);
+  vertex(900, 450);
+  vertex(1060, 500);
+  vertex(1200, 440);
+  vertex(1350, 490);
+  vertex(1490, 420);
+  vertex(1650, 500);
+  vertex(1800, 470);
+  vertex(1960, 500);
+  vertex(1960, 560);
+  vertex(0, 560);
+  endShape(CLOSE);
+
+  fill('#5ca84f');
+  rect(0, 450, 1960, 110);
+
+  pop();
+}
+
+function drawCloud(x, y, w, h) {
+  ellipse(x, y, w, h);
+  ellipse(x + w * 0.35, y - h * 0.2, w * 0.8, h * 0.9);
+  ellipse(x - w * 0.35, y - h * 0.2, w * 0.75, h * 0.8);
+}
+
 function draw() {
-  background(17, 23, 38);
+  background('#87CEEB');
+  drawMarioBackground();
 
   if (!gameWon) {
     if (kb.pressing('left') || kb.pressing('a')) {
